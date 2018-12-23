@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Todo</h1>
+
+    <input type="text" id="searchTodos" placeholder="Search Todos" />
+    <label
+      ><input type="checkbox" id="hideCompleted" unchecked />Hide
+      Completed</label
+    >
+    <div id="todoItems"></div>
+    <form id="todoForm">
+      <input
+        type="text"
+        id="todoItem"
+        name="todoItem"
+        placeholder="something to do"
+      />
+      <button>Add Todo</button>
+    </form>
+  </body>
+  <script src="http://wzrd.in/standalone/uuid%2Fv4@latest"></script>
+  <script src="todo-functions.js"></script>
+  <script src="todo.js"></script>
+</html>
