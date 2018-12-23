@@ -51,7 +51,7 @@ const removeTodos = function(id) {
   }
 };
 
-//generates the dom structure of todos
+//generates the dom structure of todos area
 const generateTodoDOM = function(item) {
   const todoContainer = document.createElement("div");
   const todoText = document.createElement("span");
