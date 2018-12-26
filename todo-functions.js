@@ -1,5 +1,5 @@
 //get saved todos from local storage
-const getSavedTodos = function() {
+const getSavedTodos = () => {
   const todosJSON = localStorage.getItem("todos");
   if (todosJSON !== null) {
     return JSON.parse(todosJSON);
@@ -8,13 +8,13 @@ const getSavedTodos = function() {
   }
 };
 //save todos to local storage
-const saveTodos = function() {
+const saveTodos = () => {
   localStorage.setItem("todos", JSON.stringify(todos));
 };
 
 //render todos
 
-const renderTodos = function(todos, filters) {
+const renderTodos = (todos, filters) => {
   const filteredTodos = todos.filter(function(todo) {
     const searchTextMatch = todo.text
       .toLowerCase()
@@ -41,10 +41,8 @@ const renderTodos = function(todos, filters) {
 
 //remove todo
 
-const removeTodos = function(id) {
-  const todoIndex = todos.findIndex(function(todo) {
-    return todo.id === id;
-  });
+const removeTodos = id => {
+  const todoIndex = todos.findIndex(todo => todo.id === id);
 
   if (todoIndex > -1) {
     todos.splice(todoIndex, 1);
@@ -52,7 +50,7 @@ const removeTodos = function(id) {
 };
 
 //generates the dom structure of todos area
-const generateTodoDOM = function(item) {
+const generateTodoDOM = item => {
   const todoContainer = document.createElement("div");
   const todoText = document.createElement("span");
   const checkbox = document.createElement("input");
@@ -84,7 +82,7 @@ const generateTodoDOM = function(item) {
   return todoContainer;
 };
 
-const generateSummaryDom = function(incompleteTodos) {
+const generateSummaryDom = incompleteTodos => {
   let summary = document.createElement("h1");
   summary.textContent = `You have ${incompleteTodos.length} todos left!`;
 
