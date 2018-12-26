@@ -15,7 +15,7 @@ const saveTodos = () => {
 //render todos
 
 const renderTodos = (todos, filters) => {
-  const filteredTodos = todos.filter(function(todo) {
+  const filteredTodos = todos.filter((todo) => {
     const searchTextMatch = todo.text
       .toLowerCase()
       .includes(filters.searchText.toLowerCase());
@@ -26,7 +26,7 @@ const renderTodos = (todos, filters) => {
 
   document.querySelector("#todoItems").innerHTML = "";
 
-  const incompleteTodos = filteredTodos.filter(function(item) {
+  const incompleteTodos = filteredTodos.filter((item) => {
     return !item.completed;
   });
 
@@ -34,7 +34,7 @@ const renderTodos = (todos, filters) => {
     .querySelector("#todoItems")
     .appendChild(generateSummaryDom(incompleteTodos));
 
-  filteredTodos.forEach(function(item) {
+  filteredTodos.forEach((item) => {
     document.querySelector("#todoItems").appendChild(generateTodoDOM(item));
   });
 };
@@ -61,7 +61,7 @@ const generateTodoDOM = item => {
   todoContainer.appendChild(checkbox);
   checkbox.checked = item.completed;
 
-  checkbox.addEventListener("change", function() {
+  checkbox.addEventListener("change", () => {
     item.completed = !item.completed;
     saveTodos();
     renderTodos(todos, filters);
@@ -73,7 +73,7 @@ const generateTodoDOM = item => {
   //setup todo remove button
   button.textContent = "x";
   todoContainer.appendChild(button);
-  button.addEventListener("click", function() {
+  button.addEventListener("click", () => {
     removeTodos(item.id);
     saveTodos();
     renderTodos(todos, filters);

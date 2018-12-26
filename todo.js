@@ -7,12 +7,12 @@ const filters = {
 
 renderTodos(todos, filters);
 
-document.querySelector("#searchTodos").addEventListener("input", function(e) {
+document.querySelector("#searchTodos").addEventListener("input", e => {
   filters.searchText = e.target.value;
   renderTodos(todos, filters);
 });
 
-document.querySelector("#todoForm").addEventListener("submit", function(e) {
+document.querySelector("#todoForm").addEventListener("submit", e => {
   e.preventDefault();
   todos.push({
     id: uuidv4(),
@@ -24,9 +24,7 @@ document.querySelector("#todoForm").addEventListener("submit", function(e) {
   renderTodos(todos, filters);
 });
 
-document
-  .querySelector("#hideCompleted")
-  .addEventListener("change", function(e) {
-    filters.hideCompleted = e.target.checked;
-    renderTodos(todos, filters);
-  });
+document.querySelector("#hideCompleted").addEventListener("change", e => {
+  filters.hideCompleted = e.target.checked;
+  renderTodos(todos, filters);
+});
