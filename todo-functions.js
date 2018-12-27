@@ -1,11 +1,7 @@
 //get saved todos from local storage
 const getSavedTodos = () => {
   const todosJSON = localStorage.getItem("todos");
-  if (todosJSON !== null) {
-    return JSON.parse(todosJSON);
-  } else {
-    return [];
-  }
+  return todosJSON !== null ? JSON.parse(todosJSON) : [];
 };
 //save todos to local storage
 const saveTodos = () => {
@@ -15,7 +11,7 @@ const saveTodos = () => {
 //render todos
 
 const renderTodos = (todos, filters) => {
-  const filteredTodos = todos.filter((todo) => {
+  const filteredTodos = todos.filter(todo => {
     const searchTextMatch = todo.text
       .toLowerCase()
       .includes(filters.searchText.toLowerCase());
@@ -26,7 +22,7 @@ const renderTodos = (todos, filters) => {
 
   document.querySelector("#todoItems").innerHTML = "";
 
-  const incompleteTodos = filteredTodos.filter((item) => {
+  const incompleteTodos = filteredTodos.filter(item => {
     return !item.completed;
   });
 
@@ -34,7 +30,7 @@ const renderTodos = (todos, filters) => {
     .querySelector("#todoItems")
     .appendChild(generateSummaryDom(incompleteTodos));
 
-  filteredTodos.forEach((item) => {
+  filteredTodos.forEach(item => {
     document.querySelector("#todoItems").appendChild(generateTodoDOM(item));
   });
 };
