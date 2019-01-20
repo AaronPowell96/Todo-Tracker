@@ -14,14 +14,17 @@ document.querySelector("#searchTodos").addEventListener("input", e => {
 
 document.querySelector("#todoForm").addEventListener("submit", e => {
   e.preventDefault();
-  todos.push({
-    id: uuidv4(),
-    text: e.target.elements.todoItem.value,
-    completed: false
-  });
-  saveTodos();
-  e.target.elements.todoItem.value = "";
-  renderTodos(todos, filters);
+  let text = e.target.elements.todoItem.value.trim();
+  if (text.length > 0) {
+    todos.push({
+      id: uuidv4(),
+      text: text,
+      completed: false
+    });
+    saveTodos();
+    e.target.elements.todoItem.value = "";
+    renderTodos(todos, filters);
+  }
 });
 
 document.querySelector("#hideCompleted").addEventListener("change", e => {
