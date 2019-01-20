@@ -48,7 +48,7 @@ const removeTodos = id => {
 //generates the dom structure of todos area
 const generateTodoDOM = item => {
   const todoEl = document.createElement("label");
-  const containerEl = document.createElement("input");
+  const containerEl = document.createElement("div");
   const todoText = document.createElement("span");
   const checkbox = document.createElement("input");
   const removeButton = document.createElement("button");
@@ -66,6 +66,10 @@ const generateTodoDOM = item => {
   todoText.textContent = item.text;
   containerEl.appendChild(todoText);
 
+  //setup container
+  todoEl.classList.add("list-item");
+  containerEl.classList.add("list-item__container");
+  todoEl.appendChild(containerEl);
   //setup todo remove button
   removeButton.textContent = "remove";
   removeButton.classList.add("button", "button--text");
@@ -76,14 +80,15 @@ const generateTodoDOM = item => {
     renderTodos(todos, filters);
   });
 
-  
-
   return todoEl;
 };
 
 const generateSummaryDom = incompleteTodos => {
-  let summary = document.createElement("h1");
-  summary.textContent = `You have ${incompleteTodos.length} todos left!`;
+  const todoLength = incompleteTodos.length;
+  const plural = todoLength === 1 ? `` : `s`;
+  const summary = document.createElement("h1");
+  summary.classList.add("list-title");
+  summary.textContent = `You have ${todoLength} todo${plural} left!`;
 
   return summary;
 };
