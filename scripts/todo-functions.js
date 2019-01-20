@@ -47,16 +47,16 @@ const removeTodos = id => {
 
 //generates the dom structure of todos area
 const generateTodoDOM = item => {
-  const todoContainer = document.createElement("div");
+  const todoEl = document.createElement("label");
+  const containerEl = document.createElement("input");
   const todoText = document.createElement("span");
   const checkbox = document.createElement("input");
-  const button = document.createElement("button");
+  const removeButton = document.createElement("button");
 
   //setup todo checkbox
   checkbox.setAttribute("type", "checkbox");
-  todoContainer.appendChild(checkbox);
+  containerEl.appendChild(checkbox);
   checkbox.checked = item.completed;
-
   checkbox.addEventListener("change", () => {
     item.completed = !item.completed;
     saveTodos();
@@ -64,18 +64,21 @@ const generateTodoDOM = item => {
   });
   //setup todo text
   todoText.textContent = item.text;
-  todoContainer.appendChild(todoText);
+  containerEl.appendChild(todoText);
 
   //setup todo remove button
-  button.textContent = "x";
-  todoContainer.appendChild(button);
-  button.addEventListener("click", () => {
+  removeButton.textContent = "remove";
+  removeButton.classList.add("button", "button--text");
+  todoEl.appendChild(removeButton);
+  removeButton.addEventListener("click", () => {
     removeTodos(item.id);
     saveTodos();
     renderTodos(todos, filters);
   });
 
-  return todoContainer;
+  
+
+  return todoEl;
 };
 
 const generateSummaryDom = incompleteTodos => {
