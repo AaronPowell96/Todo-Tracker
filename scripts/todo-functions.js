@@ -29,10 +29,16 @@ const renderTodos = (todos, filters) => {
   document
     .querySelector("#todoItems")
     .appendChild(generateSummaryDom(incompleteTodos));
-
-  filteredTodos.forEach(item => {
-    document.querySelector("#todoItems").appendChild(generateTodoDOM(item));
-  });
+  if (filteredTodos.length > 0) {
+    filteredTodos.forEach(item => {
+      document.querySelector("#todoItems").appendChild(generateTodoDOM(item));
+    });
+  } else {
+    let emptyMessage = document.createElement("p");
+    emptyMessage.classList.add("empty-message");
+    emptyMessage.textContent = "No to-dos to show";
+    document.querySelector("#todoItems").appendChild(emptyMessage);
+  }
 };
 
 //remove todo
