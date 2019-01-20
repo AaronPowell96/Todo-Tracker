@@ -11,6 +11,7 @@ const saveTodos = () => {
 //render todos
 
 const renderTodos = (todos, filters) => {
+  const todoEl = document.querySelector("#todoItems");
   const filteredTodos = todos.filter(todo => {
     const searchTextMatch = todo.text
       .toLowerCase()
@@ -20,24 +21,22 @@ const renderTodos = (todos, filters) => {
     return searchTextMatch && hideCompletedMatch;
   });
 
-  document.querySelector("#todoItems").innerHTML = "";
+  todoEl.innerHTML = "";
 
   const incompleteTodos = filteredTodos.filter(item => {
     return !item.completed;
   });
 
-  document
-    .querySelector("#todoItems")
-    .appendChild(generateSummaryDom(incompleteTodos));
+  todoEl.appendChild(generateSummaryDom(incompleteTodos));
   if (filteredTodos.length > 0) {
     filteredTodos.forEach(item => {
-      document.querySelector("#todoItems").appendChild(generateTodoDOM(item));
+      todoEl.appendChild(generateTodoDOM(item));
     });
   } else {
     let emptyMessage = document.createElement("p");
     emptyMessage.classList.add("empty-message");
     emptyMessage.textContent = "No to-dos to show";
-    document.querySelector("#todoItems").appendChild(emptyMessage);
+    todoEl.appendChild(emptyMessage);
   }
 };
 
